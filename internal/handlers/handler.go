@@ -65,7 +65,7 @@ func ClockInEventHandOut(content string, data *sdks.WSATMessageData) (reqMsg sdk
 	case ClockINDataSelf:
 		reqMsg = realDoClockINDataSelf(dateStr, data)
 	// 非法内容处理
-	case InvalidContent:
+	default:
 		reqMsg = realDoInvalidContent(dateStr, data)
 	}
 	return reqMsg

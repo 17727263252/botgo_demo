@@ -23,11 +23,11 @@ type ChanManager struct {
 
 // Start 启动本地 session manager
 func (l *ChanManager) Start(apInfo *sdks.WssConUrlResp, token *sdks.Token, intents sdks.Intent) error {
+	// 最大连接数
 	if apInfo.Shards > apInfo.SessionStartLimit.Remaining {
 		log.Printf("[ws/session/local] session limited apInfo: %+v", apInfo)
 		return errs.ErrSessionLimit
 	}
-
 	if apInfo.SessionStartLimit.MaxConcurrency == 0 {
 		apInfo.SessionStartLimit.MaxConcurrency = 1
 	}
@@ -36,8 +36,6 @@ func (l *ChanManager) Start(apInfo *sdks.WssConUrlResp, token *sdks.Token, inten
 		f = 1
 	}
 	startInterval := time.Duration(f) * time.Second
-	log.Printf("[ws/session/local] will start %d sessions and per session start interval is %s",
-		apInfo.Shards, startInterval)
 
 	// 按照shards数量初始化，用于启动连接的管理
 	l.sessionChan = make(chan sdks.Session, apInfo.Shards)

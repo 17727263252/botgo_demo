@@ -12,7 +12,6 @@ import (
 
 func main() {
 	logger := log.Logger{}
-
 	ctx := context.Background()
 	_, cancelFunc := context.WithDeadline(ctx, time.Now().Add(5*time.Second))
 	defer func() {

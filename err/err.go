@@ -37,14 +37,13 @@ const (
 	CodePagerIsNil
 )
 
-// Err sdk err
 type Err struct {
 	code  int
 	text  string
-	trace string // 错误追踪ID，可用于向平台反馈问题
+	trace string // 链路追踪ID
 }
 
-// New 创建一个新错误
+// New 可以自定义错误
 func New(code int, text string, trace ...string) error {
 	err := &Err{
 		code: code,

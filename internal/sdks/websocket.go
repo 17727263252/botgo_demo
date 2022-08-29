@@ -69,9 +69,7 @@ func (cli *WebSocketClient) Connect() error {
 // 定时心跳也在这里维护
 func (cli *WebSocketClient) Listening() error {
 	defer cli.Close()
-	// reading message
 	go cli.readMessageToQueue()
-	// read message from queue and handle,in goroutine to avoid business logic block closeChan and heartBeatTicker
 	go cli.listenMessageAndHandle()
 
 	// todo :暫時不考慮重連問題

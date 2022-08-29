@@ -3,9 +3,9 @@ package manager
 
 import (
 	"botgo_demo/err"
-	"botgo_demo/internal/sdks"
 	"math"
 	"time"
+	"wcxp-project/botgo_demo/internal/sdks"
 )
 
 // CanNotResumeErrSet 不能进行 resume 操作的错误码
