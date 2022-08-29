@@ -8,13 +8,11 @@ import (
 	"fmt"
 	"net/http"
 	"strings"
+	"wcxp-project/botgo_demo/config"
 )
 
 const (
-	// TODO：可以写成可配置化 && 传入到ApiClient
-	APPID = 102022260
-	TOKEN = "QbDX7E2DN06cSra5Oj0QaXHdbP4IS7d5"
-
+	// TODO： 这些也可以写入配置文件
 	TestDomain   = "https://sandbox.api.sgroup.qq.com"
 	GetWssConUrl = "/gateway/bot"
 	SendMsgUrl   = "/channels/"
@@ -72,7 +70,7 @@ func (cli *ApiClient) GetWssConUrl(ctx context.Context) (WssConUrlResp, error) {
 	if err != nil {
 		return WssConUrlResp{}, err
 	}
-	getWssConUrlReq.Header.Set("Authorization", fmt.Sprintf("Bot %d.%s", APPID, TOKEN))
+	getWssConUrlReq.Header.Set("Authorization", fmt.Sprintf("Bot %d.%s", config.Conf.APPID, config.Conf.TOKEN))
 	getWssConUrlReq.Header.Set("Content-Type", "application/json")
 	getWssConUrlResp, err := cli.httpCli.Do(getWssConUrlReq)
 	if err != nil {
@@ -109,7 +107,7 @@ func (cli *ApiClient) SendMessage(ctx context.Context, channelID string, req Sen
 	if err != nil {
 		return Message{}, err
 	}
-	senMsgReq.Header.Set("Authorization", fmt.Sprintf("Bot %d.%s", APPID, TOKEN))
+	senMsgReq.Header.Set("Authorization", fmt.Sprintf("Bot %d.%s", config.Conf.APPID, config.Conf.TOKEN))
 	senMsgReq.Header.Set("Content-Type", "application/json")
 	senMsgResp, err := cli.httpCli.Do(senMsgReq)
 	if err != nil {

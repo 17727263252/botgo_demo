@@ -40,48 +40,6 @@ func RegisterHandlers(handlers ...interface{}) Intent {
 	return i
 }
 
-//func registerForumHandlers(i dto.Intent, handlers ...interface{}) dto.Intent {
-//	for _, h := range handlers {
-//		switch handle := h.(type) {
-//		case ThreadEventHandler:
-//			DefaultHandlers.Thread = handle
-//			i = i | dto.EventToIntent(
-//				dto.EventForumThreadCreate, dto.EventForumThreadUpdate, dto.EventForumThreadDelete,
-//			)
-//		case PostEventHandler:
-//			DefaultHandlers.Post = handle
-//			i = i | dto.EventToIntent(dto.EventForumPostCreate, dto.EventForumPostDelete)
-//		case ReplyEventHandler:
-//			DefaultHandlers.Reply = handle
-//			i = i | dto.EventToIntent(dto.EventForumReplyCreate, dto.EventForumReplyDelete)
-//		case ForumAuditEventHandler:
-//			DefaultHandlers.ForumAudit = handle
-//			i = i | dto.EventToIntent(dto.EventForumAuditResult)
-//		default:
-//		}
-//	}
-//	return i
-//}
-
-// registerRelationHandlers 注册频道关系链相关handlers
-//func registerRelationHandlers(i dto.Intent, handlers ...interface{}) dto.Intent {
-//	for _, h := range handlers {
-//		switch handle := h.(type) {
-//		case GuildEventHandler:
-//			DefaultHandlers.Guild = handle
-//			i = i | dto.EventToIntent(dto.EventGuildCreate, dto.EventGuildDelete, dto.EventGuildUpdate)
-//		case GuildMemberEventHandler:
-//			DefaultHandlers.GuildMember = handle
-//			i = i | dto.EventToIntent(dto.EventGuildMemberAdd, dto.EventGuildMemberRemove, dto.EventGuildMemberUpdate)
-//		case ChannelEventHandler:
-//			DefaultHandlers.Channel = handle
-//			i = i | dto.EventToIntent(dto.EventChannelCreate, dto.EventChannelDelete, dto.EventChannelUpdate)
-//		default:
-//		}
-//	}
-//	return i
-//}
-
 //registerMessageHandlers 注册消息相关的 handlers
 func registerMessageHandlers(i Intent, handlers ...interface{}) Intent {
 	for _, h := range handlers {

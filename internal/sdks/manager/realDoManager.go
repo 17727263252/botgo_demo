@@ -5,8 +5,8 @@ import (
 	"log"
 	"math"
 	"runtime"
+	"wcxp-project/botgo_demo/internal/sdks"
 
-	"botgo_demo/internal/sdks"
 	"fmt"
 	"time"
 )
@@ -80,7 +80,7 @@ func (l *ChanManager) newConnect(session sdks.Session) {
 	wsClient := sdks.NewWebSocketClient(session)
 	if err := wsClient.Connect(); err != nil {
 		log.Printf(err.Error())
-		l.sessionChan <- session // 连接失败，丢回去队列排队重连
+		//l.sessionChan <- session // 连接失败，丢回去队列排队重连
 		return
 	}
 	var err error

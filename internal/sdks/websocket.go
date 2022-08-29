@@ -225,13 +225,11 @@ func (cli *WebSocketClient) saveSeq(seq uint32) {
 // return true 的时候说明事件已经被处理了
 func (cli *WebSocketClient) isHandleBuildIn(payload *WSPayload) bool {
 	switch payload.OPCode {
-	case WSHello: // 接收到 hello 后需要开始发心跳
+	// 接收到 hello 后需要开始发心跳
+	case WSHello:
 		cli.startHeartBeatTicker(payload.RawMessage)
-	case WSHeartbeatAck: // 心跳 ack 不需要业务处理
-	case WSReconnect: // 达到连接时长，需要重新连接，此时可以通过 resume 续传原连接上的事件
-		cli.closeChan <- errs.ErrNeedReConnect
-	case WSInvalidSession: // 无效的 sessionLog，需要重新鉴权
-		cli.closeChan <- errs.ErrInvalidSession
+	// 心跳 ack 不需要业务处理
+	case WSHeartbeatAck:
 	default:
 		return false
 	}
